@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>ToDo List</h1>
+        <div class="todo-list">
+            <input type="text" v-model="inputTodo" placeholder="입력해주세요" @keydown.enter="addTodo">
+            <label for="">
+               할 일 : <input type="radio" value="active" v-model="type">
+            </label>
+            <label for="">
+               한 일 : <input type="radio" value="success" v-model="type">
+            </label>
+            <todo-list :type="type" ref="todoList"></todo-list>
+        </div>
+    </div>
+
+    <template id="todo-list">
+        <ul v-if="type === 'active'">
+            <li v-for="todo in activeTodos"
+                is="todo-item" :type="type" :todo="todo">
+            </li>
+        </ul>
+        <ul v-else-if="type === 'success'">
+            <li v-for="todo in successTodos"
+                is="todo-item" :type="type" :todo="todo">
+            </li>
+        </ul>
+    </template>
+    <template id="todo-item">
+        <li>
+            <div class="todo-item">
+                {{todo.message}}
+            </div>
+            <div v-if="type === 'active'" class="success-button" @click="success(todo)">
+                Success!
+            </div>
+            <div v-else-if="type === 'success'" class="success-button" @click="rollback(todo)">
+                RollBack
+            </div>
+        </li>
+    </template>
+    <script src="../vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
