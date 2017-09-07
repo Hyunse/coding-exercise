@@ -1,4 +1,4 @@
-# JavascriptÀÇ typeof
+# Javascriptì˜ typeof
 ```
 - Undifined : "undefined"
 - Null      : "object"
@@ -6,13 +6,13 @@
 - Number    : "number"
 - String    : "string"
 - Symbol    : "symbol"
-- Object    : "object" ( call ±¸Çö x )
-- Object    : "function" ( call ±¸Çö o)
+- Object    : "object" ( call êµ¬í˜„ x )
+- Object    : "function" ( call êµ¬í˜„ o)
 ```
 # call ? 
-## ÇÔ¼ö¸¦ ¼±¾ğ ÈÄ È£Ãâ ÇÏ´Â ¹æ½Ä Áß ÇÏ³ª
+## í•¨ìˆ˜ë¥¼ ì„ ì–¸ í›„ í˜¸ì¶œ í•˜ëŠ” ë°©ì‹ ì¤‘ í•˜ë‚˜
 ```
-- ÇÔ¼öµÚ ()
+- í•¨ìˆ˜ë’¤ ()
     fun()
 - call
     fun.call(thisArg[, arg1[, arg2[, ...]]])
