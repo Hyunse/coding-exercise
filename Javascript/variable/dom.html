@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dom & Javascript</title>
+</head>
+<body>
+    <form id="formWrite">
+    <!-- <form id="formWrite" onsubmit="return validate()"> -->
+        <input type="text" id="name" name="name">
+        <input type="text" id="age" name="age">
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        (function () {
+            // DOM 과 자바스크립트 코드를 명확하게 구분해야한다.
+            // 자바스크립트에서 이벤트 할당과 처리를 전부다 할당하고 있다면
+            // 처리 로직을 확인하기 더 쉽다.
+            // 소스 관리나 유지보수할 때 유리.
+            // 단, 보안이 중요한 데이터는 처음부터 브라우저와 자바스크립트로 가져오지 않는 것이 정답.
+            var formWrite = document.getElementById('formWrite');
+            formWrite.onsubmit = validate;
+
+            function validate() {
+                var inputName = document.getElementById('name'),
+                    inputAge;
+
+                    if (inputName === '') {
+                        alert('Input Name');
+                        inputName.focus();
+                        return false;
+                    }
+
+                    if (inputAge.value === '') {
+                        alert('Input age');
+                        inputAge.focus();
+                        return false;
+                    }
+
+            }
+        }());
+    </script>
+</body>
+</html>
