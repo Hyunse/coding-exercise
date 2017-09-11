@@ -27,12 +27,14 @@
     <template id="todo-list">
         <ul v-if="type === 'active'">
             <li v-for="todo in activeTodos"
-                is="todo-item" :type="type" :todo="todo">
+                is="todo-item" :type="type" :todo="todo"
+                v-on:success="success">
             </li>
         </ul>
         <ul v-else-if="type === 'success'">
             <li v-for="todo in successTodos"
-                is="todo-item" :type="type" :todo="todo">
+                is="todo-item" :type="type" :todo="todo"
+                v-on:rollback="rollback">
             </li>
         </ul>
     </template>

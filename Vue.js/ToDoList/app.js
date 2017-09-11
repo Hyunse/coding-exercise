@@ -10,10 +10,14 @@ var todoItemComponent = {
     },
     methods: {
         success: function(todo) {
-            todo.type = 'success';
+            // props를 바꾸는걸 권장하지 않는다.
+            // props는 단방향 이기떄문에
+            // todo.type = 'success';
+            this.$emit('success', this.todo);
         },
         rollback: function(todo) {
-            todo.type = 'active';
+            // todo.type = 'active';
+            this.$emit('rollback', this.todo);
         }
     }
 };
@@ -33,6 +37,12 @@ var todoListComponent = {
         }
     },
     methods: {
+        success(todo) {
+            todo.type = 'success';
+        },
+        rollback(todo) {
+            todo.type = 'active'
+        }
     },
     computed: {
         activeTodos: function() {
