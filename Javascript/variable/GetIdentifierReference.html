@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="divMouseover">Mouse over Highlight</div>
+    <div id="divFloatingContent">Floating Content</div>
+    <script>
+        (function(){
+            var divMouseover = document.getElementById('divMouseover'),
+                divFloatingContent = document.getElementById('divFloatingContent');
+            
+            divMouseover.onmouseover = function () {
+                
+                // divMouseove
+                // 상위 스코프에 정의된 변수를 하위 스코프의 로컬변수로,
+                // 그 변수를 하위스코프로 끌어내리는 것이 좋다.
+                var xhr = new XMLHttpRequest(),
+                    localDivMouseover = divMouseover;
+                    localDivMouseover.style.backgroundColor = '#FF0000',
+                    localDivMouseover.style.color = 'white',
+                    localDivMouseover.style.fontSize = '12px';
+
+                    xhr.open('GET', 'http://myserver.com/floating_contents');
+                    xhr.onload = function () {
+                        // 상위 스코프에 있는 변수를 한 번만 사용하고 있으므로 성능을 위해서는
+                        // 굳이 로컬변수로 끌어내릴 필요가 없다.
+                        localDivFloatingContent.innerHTML = xhr.responseText;
+                        localDivFloatingContent.style.display = 'block';
+                    };
+                    xhr.send();
+            };
+
+            divMouseover.onmouseout = function () {
+                // 변수의 속성 또한 한 단계를 들어갈 때마다 컴퓨팅 자원이 조금 소모
+                // 로컬 변수로 끌어와서 사용
+                // 객체의 속성을 재귀로 탐색하는 단계를 생략할 수 있어서 성능 개선 도움
+                var divMouseoverStyle = divMouseover.style;
+                divMouseoverStyle.background = '#FFFFFF';
+                divMouseoverStyle.color = 'balck';
+                divMouseoverStyle.fontSize = '10px';
+                divFloatingContent.style.display = 'none';
+            };
+        }());
+    </script>
+</body>
+
+</html>
