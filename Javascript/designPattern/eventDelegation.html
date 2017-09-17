@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+<body>
+    <div id="BubbleOutside" class="Outside">
+        <div id="BubbleMiddle" class="Middle">
+            <div id="BubbleInside" class="Inside">
+                <div id="BubbleFloat" class="Float"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var BubbleOutside, BubbleMiddle, BubbleInside, BubbleFloat;
+
+            BubbleOutside = document.getElementById("BubbleOutside");
+            BubbleMiddle = document.getElementById("BubbleMiddle");
+            BubbleInside = document.getElementById("BubbleInside");
+            BubbleFloat = document.getElementById("BubbleFloat");
+
+            BubbleOutside.addEventListener('click', function () {
+                alert(this.className + " is Bubbing!");
+            });
+
+            BubbleMiddle.addEventListener('click', function () {
+                alert(this.className + " is Bubbing!");
+            });
+
+            BubbleInside.addEventListener('click', function () {
+                alert(this.className + " is Bubbing!");
+            });
+
+            BubbleFloat.addEventListener('click', function () {
+                alert(this.className + " is Bubbing!");
+            });
+        }());
+    </script>
+</body>
+
+</html>

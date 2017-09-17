@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <video style="width:480px" id="videoBunny" src="http://media.w3.org/2010/05/bunny/movie.ogv"></video>
+    <div id="controlPanel">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="volumeUp">Volume+</button>
+        <button id="volumeDown">Volume-</button>
+    </div>
+    <script>
+    (function () {
+        var divControlPanel = document.getElementById('controlPanel'),
+            videoBunny = document.getElementById('videoBunny');
+        
+        divControlPanel.addEventListener('click', function (e) {
+            var target = e.target || e.srcElement;
+            if (target.id === 'play') {
+                videoBunny.play();
+            } else if (target.id === 'pause') {
+                videoBunny.pause();
+            } else if (target.id === 'volumeUp') {
+                if (videoBunny.volume <= 0.9) {
+                    videoBunny.volume += 0.1;
+                } else {
+                    videoBunny.volume = 0;
+                }
+            } else if (target.id === 'volumeDown') {
+                if (videoBunny.volume >= 0.1) {
+                    videoBunny.volume -= 0.1;
+                } else {
+                    videoBunny.volume = 0;
+                }
+            }
+            // 이 함수가 호출 되면 이후 이벤트가 전파되지 않는다.
+            // 이벤트 캡처링으로 이벤트 처리 후 event.stopPropagation() 함수로 막는다면
+            // 브라우저상에서 이벤트 대상 단계와 이벤트 버블링 단계의 추가적인 이벤트 전달로 인한 자원 소모를
+            // 조금이라도 아낄 수 있다. 
+            event.stopPropagation();
+
+        
+        }, true);
+    }());
+    </script>
+</body>
+
+</html>
