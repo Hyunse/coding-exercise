@@ -52,13 +52,24 @@
                     return document.getElementById(id);
                 }
             },
-            proxyClickEventHandler = function (command) {
-                var video;
-                if (controlVideo.hasOwnProperty(command)) {
-                    video = controlVideo.getVideoById(selectControlVideo.value);
-                    controlVideo[command].call(this, video);
-                }
-            };
+            proxyClickEventHandler = (function(){
+                // 캐시 기능 + 프락시 패턴
+                var cache = {};
+                return function (command) {
+                    var video;
+                    if (controlVideo.hasOwnProperty(command)) {
+                        if (cache.hasOwnProperty(selectControlVideo.value)) {
+                            video = cache[selectControlVideo.value];
+                        } else {
+                            video = controlVideo.getVideoById(selectControlVideo.value);
+                            cache[selectControlVideo.value] = video;
+                        }
+                        controlVideo[command].call(this, video);
+
+                    }
+                };
+            }()) 
+            
         divControlPanel.addEventListener('click', function (e) {
             var target = e.target || e.srcElement;
             proxyClickEventHandler(target.id);
@@ -66,5 +77,4 @@
     }());
     </script>
 </body>
-
 </html>
