@@ -14,3 +14,8 @@ callback함수를 각각의 요소에 대해 한번씩 순서대로 불러 그 �
 > arr.reduce(callback[, initialValue])
 
 배열에 있는 구멍(빈 값)은 제외한 각 요소에 대해 callback 함수를 한 번 실행.
+
+## Array.prototype.concat()
+> var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])
+
+배열 뒤에 각 인수를 순서대로 붙인 새 배열을 만듬

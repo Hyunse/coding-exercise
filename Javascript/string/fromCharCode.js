@@ -15,18 +15,19 @@
 
 
 function alphabetPosition(text) {
+
     let result = '';
-    for (let i = 0; i < text.length; i++) {
-        if(i != 0) result += ' ';
 
-        num = ((text.charCodeAt(i) -97 < 0) ? (text.charCodeAt(i) - 64) : (text.charCodeAt(i) - 96));
+    var arr = Array.prototype.map.call(text,val => {
+        return val.charCodeAt(0);
+    });
 
-        if(num > 0) {
-            result += num;
-        } else {
-            // result. 
-        }
+    for(let i of arr) {
+        arr += 
     }
+
+
+    console.log(a);
 }
 alphabetPosition('The sunset sets at twelve o clock.');
 // alphabet_position("The sunset sets at twelve o' clock.");
