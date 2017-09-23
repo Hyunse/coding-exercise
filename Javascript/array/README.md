@@ -19,3 +19,8 @@ callback함수를 각각의 요소에 대해 한번씩 순서대로 불러 그 �
 > var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])
 
 배열 뒤에 각 인수를 순서대로 붙인 새 배열을 만듬
+
+## Array.prototype.entries()
+> arr.entries()
+
+배열의 각 인덱스에 대한 key/value 쌍을 가지는 새로운 Array Iterator 객체를 반환 
