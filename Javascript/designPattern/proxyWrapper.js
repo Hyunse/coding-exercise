@@ -32,6 +32,5 @@
         var existingFunction = wrapperdFunction;
         console.log('3. Calling wrapped existing function');
         existingFunction('first argument', 'second argument', 'third argument');
-
     }());
 }());

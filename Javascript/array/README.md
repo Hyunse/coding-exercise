@@ -24,3 +24,11 @@ callback함수를 각각의 요소에 대해 한번씩 순서대로 불러 그 �
 > arr.entries()
 
 배열의 각 인덱스에 대한 key/value 쌍을 가지는 새로운 Array Iterator 객체를 반환 
+
+## Array.prototype.slice()
+> arr.slice([begin[, end]])
+
+배열의 begin부터 end까지(end는 불포함)에 대한 shallow copy를 새로운 배열 객체로 반환
+
+### Array like Object
+http://www.bsidesoft.com/?p=323#array-prototype-slice
