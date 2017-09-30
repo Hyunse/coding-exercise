@@ -22,3 +22,5 @@ Regex
 > var reg = /ab+/;
 
 > console.log(reg.test('caaad')); // true
+
+- ? : 0 또는 1개의 문자에 일치
