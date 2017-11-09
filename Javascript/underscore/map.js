@@ -86,3 +86,12 @@ var inter = (value, index, context) => {
 }
 
 console.log(map(testArr,inter));
+
+var map = (obj, interatee, contrxt) => {
+  var keys, length, results;
+  keys = Object.keys(obj);
+}
+
+var has = function (obj, key) {
+  return obj != null && hasOwnProperty.call(obj, key);
+};

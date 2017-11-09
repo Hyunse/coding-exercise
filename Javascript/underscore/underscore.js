@@ -167,18 +167,19 @@
   // Return the results of applying the iteratee to each element.
   _.map = _.collect = function(obj, iteratee, context) {
     iteratee = cb(iteratee, context);
-    var keys = !isArrayLike(obj) && _.keys(obj),
-        length = (keys || obj).length,
-        results = Array(length);
+    var keys = !isArrayLike(obj) && _.keys(obj), // Array가 아닌거같으면 Keys 가져옴
+        length = (keys || obj).length, // Keys나 obj 의 length를 가져오고
+        results = Array(length); // array 만들기
     for (var index = 0; index < length; index++) {
-      var currentKey = keys ? keys[index] : index;
-      results[index] = iteratee(obj[currentKey], currentKey, obj);
+      var currentKey = keys ? keys[index] : index; // current key는 object이면 keys[index] Array이면 index
+      results[index] = iteratee(obj[currentKey], currentKey, obj); // results Array에 담기
     }
-    return results;
+    return results; // 반환
   };
 
   // Create a reducing function iterating left or right.
   function createReduce(dir) {
+    // 양수면 -> 음수면 <-
     // Optimized iterator function as using arguments.length
     // in the main function will deoptimize the, see #1991.
     function iterator(obj, iteratee, memo, keys, index, length) {
