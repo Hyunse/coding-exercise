@@ -8,7 +8,7 @@ Sale.prototype.getPrice = function () {
 
 Sale.decorators = {};
 
-Sale.decorators.fedtax = {
+Sale.decorators.quebec = {
     getPrice: function () {
         var price = this.uber.getPrice();
         price += price*7.5/100;
