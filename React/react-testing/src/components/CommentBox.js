@@ -14,7 +14,7 @@ class CommentBox extends Component {
 
     // Save a comment
 
-    this.setState({ comment: e.target.value });
+    this.setState({ comment: '' });
   };
 
   render() {
