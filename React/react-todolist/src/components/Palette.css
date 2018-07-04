@@ -1,0 +1,14 @@
+.palette-item-list {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.palette-item {
+  width: 2rem;
+  height: 2rem;
+}
+
+  .palette-item +.palette-item {
+    margin-left: 1rem;
+  }
