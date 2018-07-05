@@ -1,8 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import reducers from 'reducers';
 import CommentBox from 'components/CommentBox';
 import Root from 'Root';
 
@@ -23,7 +20,7 @@ afterEach(() => {
 it('has a text area and a button', () => {
 
   expect(wrapped.find('textarea').length).toEqual(1);
-  expect(wrapped.find('button').length).toEqual(1);
+  expect(wrapped.find('button').length).toEqual(2);
 
 });
 
