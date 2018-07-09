@@ -1,0 +1,10 @@
+.movie-figure {
+  border: 1px solid #e7f5ff;
+  box-shadow: 10px 10px 10px #000000;
+  cursor: pointer;
+}
+
+.movie-figcaption {
+  background: white;
+  text-align: center;
+}
