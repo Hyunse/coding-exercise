@@ -1,0 +1,10 @@
+{
+  "name": "typescript-blockchain",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc-watch --onSuccess \" node dist/index.js\" "
+  },
+  "devDependencies": {
+    "tsc-watch": "^1.0.22"
+  }
+}
