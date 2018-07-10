@@ -1,0 +1,8 @@
+.movie-detail-box {
+  display: flex;
+  padding: 50px 50px 50px 50px;
+}
+
+.movie-description {
+  margin-top: 16px;
+}
