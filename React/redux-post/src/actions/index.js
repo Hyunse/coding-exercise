@@ -44,3 +44,7 @@ export function deletePost(id, callBack) {
     payload: id
   }
 }
+
+export function loginUser() {
+  // validate
+}
