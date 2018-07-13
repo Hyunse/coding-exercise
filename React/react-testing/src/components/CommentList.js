@@ -9,7 +9,12 @@ class CommentList extends Component {
   }
 
   render() {
-    return <div>{this.renderComments()}</div>;
+    return (
+      <div>
+        <h4>Comment List</h4>
+        {this.renderComments()}
+      </div>
+    );
   }
 }
 
