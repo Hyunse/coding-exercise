@@ -1,8 +1,7 @@
 const express = require('express'),
-  router = express.Router();
+  router = express.Router(),
+  Authentication = require('./controllers/authentication');
 
-router.get('/', (req, res, next) => {
-  res.send(['waterbottle', 'phone', 'paper']);
-});
+router.post('/signup', Authentication.signup);
 
 module.exports = router;
