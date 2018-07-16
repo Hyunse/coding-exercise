@@ -1,15 +1,17 @@
+const jwt = require('jwt-simple');
 const User = require('../models/user');
+const config = require('../config');
 
 exports.signup = (req, res, next) => {
-  const email = req.body.email,
-    password = req.body.password;
+  const email = req.body.email;
+  const password = req.body.password;
 
   if (!email || !password) {
     return res
       .status(422)
       .send({ error: 'You must provide email and password ' });
   }
-  
+
   // Check email
   User.findOne({ email }, (err, existUser) => {
     if (err) return next(err);

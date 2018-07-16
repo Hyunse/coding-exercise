@@ -1,6 +1,6 @@
-const mongoose = require('mongoose'),
-  bcrypt = require('bcrypt-nodejs'),
-  Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
+const Schema = mongoose.Schema;
 
 // Define model
 const userSchema = new Schema({
@@ -17,7 +17,7 @@ const userSchema = new Schema({
 // On Save Hook, encrypt password
 userSchema.pre('save', function(next) {
   const user = this;
-  
+
   bcrypt.genSalt(10, function(err, salt) {
     if (err) return next(err);
 

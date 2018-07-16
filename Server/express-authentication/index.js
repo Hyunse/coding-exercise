@@ -1,10 +1,10 @@
 // Main Starting point
-const express = require('express'),
-  http = require('http'),
-  bodyParser = require('body-parser'),
-  morgan = require('morgan'),
-  mongoose = require('mongoose'),
-  app = express();
+const express = require('express');
+const  http = require('http');
+const  bodyParser = require('body-parser');
+const  morgan = require('morgan');
+const  mongoose = require('mongoose');
+const  app = express();
 
 // DB
 mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
