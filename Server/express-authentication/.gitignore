@@ -3,3 +3,6 @@
 
 # production
 /build
+
+# config
+config.js
