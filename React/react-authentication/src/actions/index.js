@@ -1,11 +1,26 @@
 import axios from 'axios';
-import { AUTH_USER } from './types.js';
+import { AUTH_USER, AUTH_ERROR } from './types.js';
 
 /**
  * Sign Up User
  */
-export const signupUser = (formProps) => (dispatch) => {
-  axios.post('http://localhost:3090/signup', formProps);
+export const signupUser = (formProps, callback) => async (dispatch) => {
+  try {
+    const response = await axios.post('http://localhost:3090/signup', formProps);
+
+    dispatch({
+      type: AUTH_USER,
+      payload: response.data.token
+    });
+    
+    // Redirect To Feature Page
+    callback();
+  } catch (e) {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: 'Email or Password is wrong'
+    })
+  }
 };
 
 /**

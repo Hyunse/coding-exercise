@@ -21,8 +21,11 @@ class Signup extends Component {
 
   onSubmit = (formProps) => {
     // Submit values for Sign up
-    this.props.signupUser(formProps);
-  }
+    this.props.signupUser(formProps, () => {
+      console.log(this);
+      this.props.history.push('/feature');
+    });
+  };
 
   render() {
     const { handleSubmit } = this.props;
@@ -50,6 +53,10 @@ class Signup extends Component {
   }
 }
 
+function mapStateToActions({ errorMessage }) {
+  if (!errorMessage) return { errorMessage };
+}
+
 // Validate Form values
 function validate(values) {
   const errors = {};
@@ -67,7 +74,7 @@ function validate(values) {
 
 export default compose(
   connect(
-    null,
+    mapStateToActions,
     actions
   ),
   reduxForm({ form: 'signup' })
