@@ -22,7 +22,6 @@ class Signup extends Component {
   onSubmit = (formProps) => {
     // Submit values for Sign up
     this.props.signupUser(formProps, () => {
-      console.log(this);
       this.props.history.push('/feature');
     });
   };

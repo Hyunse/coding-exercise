@@ -15,7 +15,7 @@ export const signupUser = (formProps, callback) => async (dispatch) => {
     
     // Set Local Storage
     localStorage.setItem('token', response.data.token);
-    
+
     // Redirect To Feature Page
     callback();
   } catch (e) {
@@ -45,12 +45,11 @@ export const signinUser = ({ email, password }) => {
  * Sign Out User
  */
 export const signoutUser = () => {
-  // Post Sign Out
-  const request = '';
-  const type = '';
+
+  localStorage.removeItem('token');
   // Pass to Reducer
   return {
-    type: type,
-    payload: request
+    type: AUTH_USER,
+    payload: ''
   };
 };
