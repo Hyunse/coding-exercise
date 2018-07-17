@@ -29,16 +29,26 @@ export const signupUser = (formProps, callback) => async (dispatch) => {
 /**
  * Sign In User
  */
-export const signinUser = ({ email, password }) => {
-  // Post Sign In
-  const request = '';
-  const type = '';
+export const signinUser = (formProps, callback) => async (dispatch) => {
+  try {
+    const response = await axios.post('http://localhost:3090/signin', formProps);
 
-  // Pass to Reducer
-  return {
-    type: type,
-    payload: request
-  };
+    dispatch({
+      type: AUTH_USER,
+      payload: response.data.token
+    });
+    
+    // Set Local Storage
+    localStorage.setItem('token', response.data.token);
+
+    // Redirect To Feature Page
+    callback();
+  } catch (e) {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: 'Email or Password is wrong'
+    })
+  }
 };
 
 /**

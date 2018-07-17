@@ -7,10 +7,6 @@ import * as actions from '../../actions';
 class Signup extends Component {
   // Render Field
   renderField(field) {
-    const {
-      meta: { touched, error }
-    } = field;
-
     return (
       <fieldset>
         <label>{field.label}</label>

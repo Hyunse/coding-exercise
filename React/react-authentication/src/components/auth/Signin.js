@@ -1,34 +1,55 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 class Signin extends Component {
   // Render Field
   renderField(field) {
-    const {
-      meta: { touched, error }
-    } = field;
-
     return (
       <fieldset>
         <label>{field.label}</label>
-        <input type="text" {...field.input} />
+        <input type={field.type} {...field.input} />
       </fieldset>
     );
   }
 
-  onSubmit = (values) => {
+  onSubmit = (formProps) => {
     // Submit values for Sign up
-  }
+    this.props.signinUser(formProps, () => {
+      this.props.history.push('/feature');
+    });
+  };
 
   render() {
+    const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
-        <Field label="Email" name="email" component={this.renderField} />
-        <Field label="Password" name="password" component={this.renderField} />
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <Field
+          label="Email"
+          name="email"
+          type="text"
+          autoComplete="none"
+          component={this.renderField}
+        />
+        <Field
+          label="Password"
+          name="password"
+          type="password"
+          autoComplete="none"
+          component={this.renderField}
+        />
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     );
   }
+}
+
+function mapStateToActions({ errorMessage }) {
+  if (!errorMessage) return { errorMessage };
 }
 
 // Validate Form values
@@ -46,4 +67,10 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({})(connect(null)(Signin));
+export default compose(
+  connect(
+    mapStateToActions,
+    actions
+  ),
+  reduxForm({ form: 'Signin' })
+)(Signin);
