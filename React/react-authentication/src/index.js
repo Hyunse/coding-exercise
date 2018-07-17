@@ -15,7 +15,7 @@ const store = createStore(
   // Reducer
   reducers,
   // Init State
-  {},
+  { auth: { authenticated: localStorage.getItem('token') } },
   // Middleware
   applyMiddleware(reduxThunk)
 );

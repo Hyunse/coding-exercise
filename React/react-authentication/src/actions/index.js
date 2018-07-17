@@ -13,6 +13,9 @@ export const signupUser = (formProps, callback) => async (dispatch) => {
       payload: response.data.token
     });
     
+    // Set Local Storage
+    localStorage.setItem('token', response.data.token);
+    
     // Redirect To Feature Page
     callback();
   } catch (e) {
