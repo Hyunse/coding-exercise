@@ -5,4 +5,4 @@
 /build
 
 # config
-config.js
+config/keys.js
