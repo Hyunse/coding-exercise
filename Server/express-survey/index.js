@@ -1,35 +1,15 @@
+// Modules
 import express from 'express';
-import passport from 'passport';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { GOOGLE_API_KEY } from './config/keys';
+// Services
+import './services/service_passport';
+// Routes
+import authRouter from './routes/route_auth';
 
 // Var
 const app = express();
 
-// Pssport
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: GOOGLE_API_KEY.clientID,
-      clientSecret: GOOGLE_API_KEY.clientSecret,
-      callbackURL: '/auth/google/callback'
-    },
-    (accessToken, refreshToken, profile, done) => {
-      console.log(accessToken);
-    }
-  )
-);
-
-app.get(
-  '/auth/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email']
-  })
-);
-
-app.get('/auth/google/callback', passport.authenticate('google', {
-
-}))
+// Use Routers
+app.use(authRouter);
 
 // Dynamic Port Binding
 const PORT = process.env.PORT || 5000;
