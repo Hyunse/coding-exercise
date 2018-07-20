@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { GOOGLE_API_KEY } from '../config/keys';
+import { GOOGLE_API_KEY } from '../config/config_keys';
 
 passport.use(
   new GoogleStrategy(
