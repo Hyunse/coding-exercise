@@ -1,11 +1,23 @@
 import React from 'react';
-import Header from './Header';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-const App = ({ children }) => {
+// Components
+import Header from './Header';
+import Dashboard from './Dashboard';
+import Landing from './Landing';
+import SurveyNew from './SurveyNew';
+
+const App = () => {
   return (
     <div>
-      <Header />
-      {children}
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Route path="/" exact component={Landing} />
+          <Route path="/surveys" exact component={Dashboard} />
+          <Route path="/surveys/new" component={SurveyNew} />
+        </div>
+      </BrowserRouter>
     </div>
   );
 };
