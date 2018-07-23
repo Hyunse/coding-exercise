@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
   renderLink() {
     return (
-      <ul style={{"list-style": "none"}}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/surveys">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/surveys/new">New Survey</Link>
-        </li>
-      </ul>
+      <nav>
+        <div className="nav-wrapper">
+          <a className="left brand-logo">
+            Emaily
+          </a>
+          <ul className="right">
+            <li>
+              <a>Login with Google</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     );
   }
 
