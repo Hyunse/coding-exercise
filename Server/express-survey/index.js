@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
+import bodyParser from 'body-parser';
 // Config
 import { DB_CONFIG } from './config/config_db';
 import { COOKIE_KEY } from './config/config_keys';
@@ -12,6 +13,7 @@ import './models/User';
 import './services/service_passport';
 // Routes
 import authRouter from './routes/route_auth';
+import billingRouter from './routes/route_billing';
 
 // Connect mongo
 mongoose.connect(
@@ -22,6 +24,8 @@ mongoose.connect(
 // Var
 const app = express();
 
+// Body Parser
+app.use(bodyParser.json());
 // Init Middleware
 app.use(
   cookieSession({
@@ -35,6 +39,7 @@ app.use(passport.session());
 
 // Use Routers
 app.use(authRouter);
+app.use(billingRouter);
 
 // Dynamic Port Binding
 const PORT = process.env.PORT || 5000;
