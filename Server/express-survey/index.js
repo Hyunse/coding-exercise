@@ -9,6 +9,7 @@ import { DB_CONFIG } from './config/config_db';
 import { COOKIE_KEY } from './config/config_keys';
 // Models
 import './models/User';
+import './models/Survey';
 // Services
 import './services/service_passport';
 // Routes
