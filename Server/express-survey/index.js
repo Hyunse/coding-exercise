@@ -15,6 +15,7 @@ import './services/service_passport';
 // Routes
 import authRouter from './routes/route_auth';
 import billingRouter from './routes/route_billing';
+import surveyRouter from './routes/route_survey';
 
 // Connect mongo
 mongoose.connect(
@@ -41,6 +42,7 @@ app.use(passport.session());
 // Use Routers
 app.use(authRouter);
 app.use(billingRouter);
+app.use(surveyRouter);
 
 // Dynamic Port Binding
 const PORT = process.env.PORT || 5000;
