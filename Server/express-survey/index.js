@@ -10,6 +10,7 @@ import { COOKIE_KEY } from './config/config_keys';
 // Models
 import './models/User';
 import './models/Survey';
+import './models/Recipient';
 // Services
 import './services/service_passport';
 // Routes

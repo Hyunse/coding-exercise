@@ -1,0 +1,69 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\anzmf\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add sendgird --save
+
+PATH: 
+  C:\Users\anzmf\cmder\bin;C:\Users\anzmf\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\Users\anzmf\cmder\vendor\conemu-maximus5;C:\Users\anzmf\cmder\vendor\conemu-maximus5\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\PuTTY\;C:\Users\anzmf\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\anzmf\AppData\Roaming\npm;C:\Program Files\Bandizip\;C:\Program Files\heroku\bin;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;C:\Users\anzmf\cmder
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  8.10.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/sendgird: Not found
+      at Request.params.callback [as _callback] (C:\Users\anzmf\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:65656:18)
+      at Request.self.callback (C:\Users\anzmf\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:134675:22)
+      at emitTwo (events.js:126:13)
+      at Request.emit (events.js:214:7)
+      at Request.<anonymous> (C:\Users\anzmf\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:135658:10)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at IncomingMessage.<anonymous> (C:\Users\anzmf\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:135578:12)
+      at Object.onceWrapper (events.js:313:30)
+      at emitNone (events.js:111:20)
+
+npm manifest: 
+  {
+    "name": "express-survey",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+      "node": "8.10.0",
+      "npm": "6.1.0"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.18.3",
+      "concurrently": "^3.6.0",
+      "cookie-session": "^2.0.0-beta.3",
+      "express": "^4.16.3",
+      "mongoose": "^5.2.4",
+      "nodemon": "^1.18.3",
+      "passport": "^0.4.0",
+      "passport-google-oauth20": "^1.0.0",
+      "stripe": "^6.4.0"
+    },
+    "scripts": {
+      "start": "nodemon --exec babel-node index.js",
+      "server": "nodemon --exec babel-node index.js",
+      "client": "npm run start --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-preset-env": "^1.7.0",
+      "babel-preset-stage-3": "^6.24.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
