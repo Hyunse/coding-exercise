@@ -2,6 +2,6 @@
 
 - Javascript
 - Vue.js
+- React
+- Server
 - HTML/CSS
-- Web Programming
-
