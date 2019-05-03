@@ -1,0 +1,63 @@
+
+html, 
+body {
+    height: 100%;
+}
+
+body p {
+  margin: 0;
+}
+
+header {
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapper {
+  height: 100%;
+  margin: 20px 100px;
+}
+
+.body-container {
+  display: flex;
+  height: 1;
+  flex-direction: column;
+  padding: 15px 15px;
+}
+.body-container .row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.row {
+  margin-bottom: 50px;
+}
+
+.content-card {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.content-card:hover {
+  color: white;
+  background-color: black;
+}
+
+.content-card:hover > a {
+  color: white;
+}
+
+.content-card > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 200px;
+  text-decoration: none;
+}

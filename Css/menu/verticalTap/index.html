@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    .tab {
+      float: left;
+      width: 30%;
+      height: 100%;
+      background-color: black;
+    }
+
+    .tab>button {
+      display: block;
+      width: 100%;
+      font-size: 20px;
+      color: white;
+      margin-bottom: 20px;
+      padding: 22px 16px;
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab>button:hover {
+      background-color: blue;
+    }
+
+    .tabcontent {
+      display: none;
+    }
+
+    .active {
+      background-color: blue !important;
+    }
+  </style>
+  <title>Vertical-Tap</title>
+</head>
+
+<body>
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  </div>
+
+  <div id="London" class="tabcontent">
+    <h3>London</h3>
+    <p>London is the capital city of England.</p>
+  </div>
+
+  <div id="Paris" class="tabcontent">
+    <h3>Paris</h3>
+    <p>Paris is the capital of France.</p>
+  </div>
+
+  <div id="Tokyo" class="tabcontent">
+    <h3>Tokyo</h3>
+    <p>Tokyo is the capital of Japan.</p>
+  </div>
+
+  <script>
+    function openCity(event, city) {
+      let curTarget = event.currentTarget;
+      let showTab = document.getElementById(city);
+
+      closeAllTabs();
+
+      curTarget.classList.toggle('active');
+
+      if (showTab.style.display == 'block') {
+        showTab.style.display = 'none';
+      } else {
+        showTab.style.display = 'block';
+      }
+    }
+
+    function closeAllTabs() {
+      let tabContents = document.getElementsByClassName('tabcontent');
+      let tabLinks = document.getElementsByClassName('tablinks');
+
+      for (let i = 0; i < tabContents.length; i++) {
+        let tab = tabContents[i];
+        
+        tab.style.display = 'none';
+      }
+
+      for(let link of tabLinks) {
+        link.className = link.className.replace(' active', '');
+      }
+    }
+  </script>
+</body>
+
+</html>

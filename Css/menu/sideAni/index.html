@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    .side-left-nav {
+      width: 0;
+      height: 100%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 50px;
+    }
+
+    .side-top-nav {
+      width: 100%;
+      height: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      text-align: center;
+      z-index: 1;
+      background-color: #111;
+      overflow-y: hidden;
+      transition: 0.5s;
+    }
+
+    .side-left-margin-nav {
+      width: 0;
+      height: 100%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 50px;
+    }
+
+    .side-left-nav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .side-top-nav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .side-left-margin-nav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 20px;
+    }
+  </style>
+  <title>Side Animation</title>
+</head>
+
+<body>
+  <div id="mySidenav" class="side-left-nav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div id="mySidenav2" class="side-top-nav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div id="mySidenav3" class="side-left-margin-nav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+
+
+  <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+  <div id="main">
+    <h2>Animated Sidenav Example</h2>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Left</span>
+    <span style="font-size:30px;cursor:pointer; margin-left: 50px;" onclick="openNav2()">&#9776; Top</span>
+    <span style="font-size:30px;cursor:pointer; margin-left: 50px;" onclick="openNav3()">&#9776; Margin Left</span>
+  </div>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+    function openNav2() {
+      document.getElementById("mySidenav2").style.height = "250px";
+    }
+
+    function closeNav2() {
+      document.getElementById("mySidenav2").style.height = "0";
+    }
+
+    function openNav3() {
+      document.getElementById("mySidenav3").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav3() {
+      document.getElementById("mySidenav3").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0px";
+    }
+
+  </script>
+</body>
+
+</html>
