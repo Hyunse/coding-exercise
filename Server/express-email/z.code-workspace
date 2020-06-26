@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "express-email",
+			"path": "."
+		},
+		{
+			"name": "images",
+			"path": "..\\..\\..\\..\\Desktop\\CampaignMonitorEmail\\images"
+		}
+	],
+	"settings": {}
+}
