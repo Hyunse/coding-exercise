@@ -33,6 +33,7 @@ function useFetch() {
     }
   };
 
+  // Using useEffect when only mount
   useEffect(() => {
     callUrl();
   }, []);
@@ -43,6 +44,8 @@ function useFetch() {
 function App() {
   const name = useInput('');
   const { payload, loading, error } = useFetch();
+  const [count, setCount] = useState(0);
+
   return (
     <div className="App">
       <h1>React Hooks</h1>
@@ -55,6 +58,12 @@ function App() {
         )}
       </div>
       {name.value}
+
+      <div>
+        <button onClick={() => setCount(count - 1)}>-1</button>
+        <button onClick={() => setCount(count + 1)}>+1</button>
+        {count}
+      </div>
     </div>
   );
 }
