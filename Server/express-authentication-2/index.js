@@ -1,11 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
-const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const HOST = process.env.HOST || 3000;
+const MONGO_URI = process.env.MONGO_URI || '';
 const app = express();
 // Routers
 const userRouter = require('./routes/route_user');
-// Dot Env
-dotenv.config();
 
 // Use routes
 app.use(userRouter);
@@ -18,6 +19,19 @@ app.get('/', (req, res) => {
     .status(200);
 });
 
-app.listen(HOST, () => {
-  console.log(`Connected : ${HOST}`);
-});
+// Use native promise
+mongoose.Promise = global.Promise;
+
+// Mongoose & listen server
+mongoose
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    createIndexes: true
+  })
+  .then(() => {
+    app.listen(HOST, () => {
+      console.log(`Connected : ${HOST}`);
+    });
+  })
+  .catch((error) => console.error(error));
