@@ -19,10 +19,7 @@ import billingRouter from './routes/route_billing';
 import surveyRouter from './routes/route_survey';
 
 // Connect mongo
-mongoose.connect(
-  DB_CONFIG.uri(),
-  { useNewUrlParser: true }
-);
+mongoose.connect(DB_CONFIG.uri(), { useNewUrlParser: true });
 
 // Var
 const app = express();
@@ -34,7 +31,7 @@ app.use(
   cookieSession({
     // 30 Days
     maxAge: 30 * 24 * 60 * 1000,
-    keys: [COOKIE_KEY]
+    keys: [COOKIE_KEY],
   })
 );
 app.use(passport.initialize());
@@ -48,4 +45,6 @@ app.use(surveyRouter);
 // Dynamic Port Binding
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Connected : ${PORT}`);
+});

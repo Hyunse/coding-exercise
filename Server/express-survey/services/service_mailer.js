@@ -1,5 +1,5 @@
 import sendgrid from 'sendgrid';
-import { SEND_GRID_KEY } from '../config/config_key';
+import { SEND_GRID_KEY } from '../config/config_keys';
 
 const helper = sendgrid.mail;
 
