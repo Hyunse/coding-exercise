@@ -2,12 +2,16 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const HOST = process.env.HOST || 3000;
 const MONGO_URI = process.env.MONGO_URI || '';
 const app = express();
 // Routers
 const userRouter = require('./routes/route_user');
 
+// Middlewares
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Use routes
 app.use(userRouter);
 
@@ -27,7 +31,7 @@ mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    createIndexes: true
+    createIndexes: true,
   })
   .then(() => {
     app.listen(HOST, () => {
