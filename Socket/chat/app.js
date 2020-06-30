@@ -65,6 +65,7 @@ io.on('connection', (socket) => {
   socket.on('next game', ({ roomName, answer }) => {
     const state = game.nextRound();
 
+    console.log(state);
     io.sockets.in(roomName).emit('new game', state);
   });
 

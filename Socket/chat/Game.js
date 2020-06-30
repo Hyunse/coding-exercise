@@ -1,16 +1,28 @@
-const WORD_ARRAY = ['cat', 'dog', 'king', 'sky'];
+let wordArray = [
+  'cat',
+  'dog',
+  'king',
+  'sky',
+  'water',
+  'coffee',
+  'computer',
+  'java',
+  'react',
+];
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
 
 class Game {
   ADD_POINT = 100;
 
   constructor(id, players) {
-    this.state = {
-      roomName: id,
-      guesser: '',
-      word: '',
-      point: 0,
-      round: 0,
-    };
+    this.roomName = id;
+    this.guesser = '';
+    this.word = '';
+    this.point = 0;
+    this.round = 0;
     this.wordArray = [];
     this.players = players;
     this.totalRound = players.length * 2;
@@ -18,56 +30,99 @@ class Game {
     this.initGame();
   }
 
+  /**
+   * Init & Restart Game
+   */
   initGame() {
-    // TODO: Get Array Data
-    this.wordArray = WORD_ARRAY;
-    this.setState('guesser', this.players[0]);
-    this.setState('word', this.wordArray[0]);
-    this.setState('point', 0);
-    this.setState('round', 0);
+    // Get Array Data
+    this.wordArray = this.initWords(this.players);
+    this.guesser = this.players[0];
+    this.word = this.wordArray[0];
+    this.point = 0;
+    this.round = 0;
   }
 
+  /**
+   * Get Words Array for game
+   * @param {array} players 
+   */
+  initWords(players) {
+    // Determine Word Array length by players.length
+    let shuffledWords = shuffle(wordArray);
+
+    return shuffledWords.slice(0, this.totalRound);
+  }
+
+  /**
+   * Check Guesser's Answer
+   * @param {string} answer 
+   */
   checkAnswer(answer) {
-    const word = this.state.word;
+    const word = this.word;
     let correct = false;
 
     if (word === answer) {
-      this.setState('point', this.state.point + this.ADD_POINT);
+      this.point += this.ADD_POINT;
       correct = true;
     }
 
     return correct;
   }
 
+  /**
+   * Go to Next Round
+   */
   nextRound() {
+    this.round = this.round + 1;
+    this.guesser = this.getNextGuesser(this.round);
+    this.word = this.getNextWord(this.round);
+
+    return this.getState();
+  }
+
+  /**
+   * Get State
+   */
+  getState() {
+    return {
+      roomName: this.roomName,
+      guesser: this.guesser,
+      word: this.word,
+      point: this.point,
+      round: this.round,
+    };
+  }
+
+  /**
+   * Get Next Guesser
+   * @param {number} round 
+   */
+  getNextGuesser(round) {
     const players = this.players;
-    let round = this.state.round + 1;
     let nextGuesser;
 
     if (round >= players.length) {
-      // round = 5 player =3 5-3
       nextGuesser = players[round - players.length];
     } else {
       nextGuesser = players[round];
     }
 
-    this.setState('round', round);
-    this.setState('guesser', nextGuesser);
-    this.setState('word', this.wordArray[round]);
-
-    return this.state;
+    return nextGuesser;
   }
 
-  setState(key, value) {
-    this.state[key] = value;
+  /**
+   * Get Next Word
+   * @param {number} round 
+   */
+  getNextWord(round) {
+    return this.wordArray[round];
   }
 
-  getState() {
-    return this.state;
-  }
-
+  /**
+   * Check Last Round
+   */
   checkLastRound() {
-    return this.state.round + 1 === this.totalRound ? true : false;
+    return this.round + 1 === this.totalRound ? true : false;
   }
 }
 
