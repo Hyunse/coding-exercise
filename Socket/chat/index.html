@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Socket</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font: 13px Helvetica, Arial;
+      }
+      .msg-box {
+        background: #000;
+        padding: 3px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      .msg-box input {
+        border: 0;
+        padding: 10px;
+        width: 90%;
+        margin-right: 0.5%;
+      }
+      .msg-box button {
+        width: 9%;
+        background: rgb(130, 224, 255);
+        border: none;
+        padding: 10px;
+      }
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages li {
+        padding: 5px 10px;
+      }
+      #messages li:nth-child(odd) {
+        background: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <div class="msg-box">
+      <input id="msg" autocomplete="off" /><button id="send">Send</button>
+    </div>
+    <div>
+      <label for="roomName"> Room: <input type="text" id="roomName" /> </label>
+      <label for="player"> Player: <input type="text" id="player" /> </label>
+      <button id="join">Join</button>
+    </div>
+    <button id="start">Game Start</button>
+    <div id="answer-area">
+      <label for="answer">
+        Answer Here: <input type="text" id="answer"
+      /></label>
+      <button id="answerBtn">Answer</button>
+      <button id="nextBtn">Next Game</button>
+    </div>
+    <div>Try again??? <button id="reset">Reset</div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(() => {
+        const socket = io();
+        let game = {
+          roomName: '',
+          player: '',
+          msg: '',
+          start: false,
+          answer: '',
+          isLast: false,
+          point: 0,
+        };
+
+        $('#join').on('click', function () {
+          game.roomName = $('#roomName').val();
+          game.player = $('#player').val();
+          socket.emit('join room', game);
+        });
+
+        $('#send').on('click', function () {
+          game.msg = $('#msg').val();
+
+          socket.emit('chat message', game);
+          $('#msg').val('');
+          return false;
+        });
+
+        $('#start').on('click', function () {
+          game.start = true;
+          socket.emit('game start', game);
+        });
+
+        $('#answerBtn').on('click', function () {
+          game.answer = $('#answer').val();
+          socket.emit('answer', game);
+        });
+
+        $('#nextBtn').on('click', function () {
+          socket.emit('next game', game);
+        });
+
+        $('#reset').on('click', function () {
+          game = {
+            msg: '',
+            start: false,
+            answer: '',
+            isLast: false,
+            point: 0,
+          };
+          socket.emit('reset game', game);
+        });
+
+        socket.on('answer', function ({ isCorrect, isLast }) {
+          let text = 'Boooooooooooo';
+          let point;
+          if (isCorrect) {
+            text = 'Correct!!!!!';
+          }
+
+          $('#messages').append($('<li>').text(text));
+
+          if (isLast) {
+            point = ` Total Point: ${game.point}`;
+            $('#messages').append($('<li>').text(point));
+          }
+        });
+
+        socket.on('new game', function (state) {
+          console.log(state);
+          game.point = state.point;
+
+          if (state.guesser !== game.player) {
+            $('#answer-area').hide();
+            $('#messages').append($('<li>').text(state.word));
+          } else {
+            $('#answer-area').show();
+          }
+        });
+
+        socket.on('ask end game', (state) => {
+          $('#messages').append($('<li>').text('Try again?'));
+        });
+
+        socket.on('chat message', (msg) => {
+          $('#messages').append($('<li>').text(msg));
+        });
+
+        $('#answer-area').hide();
+      });
+    </script>
+  </body>
+</html>
