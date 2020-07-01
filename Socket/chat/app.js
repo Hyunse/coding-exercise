@@ -55,8 +55,9 @@ io.on('connection', (socket) => {
   socket.on('answer', ({ answer, roomName }) => {
     const isCorrect = game.checkAnswer(answer);
     const isLast = game.checkLastRound();
+    const state = game.getState();
 
-    io.sockets.in(roomName).emit('answer', { isCorrect, isLast });
+    io.sockets.in(roomName).emit('answer', { isCorrect, isLast, state});
   });
 
   /**
@@ -69,10 +70,12 @@ io.on('connection', (socket) => {
     io.sockets.in(roomName).emit('new game', state);
   });
 
-  socket.on('reset game', ({ roomName }) => {
+  socket.on('reset game', () => {
     game.initGame();
-    console.log(game.getState());
-    io.sockets.in(roomName).emit('new game', game.getState());
+    const state = game.getState();
+    
+    console.log(state);
+    io.sockets.in(state.roomName).emit('new game', state);
   });
 
   /**

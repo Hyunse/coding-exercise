@@ -25,7 +25,7 @@ class Game {
     this.round = 0;
     this.wordArray = [];
     this.players = players;
-    this.totalRound = players.length * 2;
+    this.maxRound = players.length * 2;
 
     this.initGame();
   }
@@ -50,7 +50,7 @@ class Game {
     // Determine Word Array length by players.length
     let shuffledWords = shuffle(wordArray);
 
-    return shuffledWords.slice(0, this.totalRound);
+    return shuffledWords.slice(0, this.maxRound);
   }
 
   /**
@@ -122,7 +122,7 @@ class Game {
    * Check Last Round
    */
   checkLastRound() {
-    return this.round + 1 === this.totalRound ? true : false;
+    return this.round + 1 === this.maxRound ? true : false;
   }
 }
 
