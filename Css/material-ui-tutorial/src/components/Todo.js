@@ -1,10 +1,11 @@
 import React from 'react';
+import { ListItem } from '@material-ui/core';
 
-const Todo = () => {
+const Todo = ({ task, completed }) => {
   return (
-    <div>
-      Todo
-    </div>
+    <ListItem>
+      {task} {completed}
+    </ListItem>
   )
 }
 
