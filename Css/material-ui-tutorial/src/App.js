@@ -1,68 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import axios from 'axios';
-import Home from './components/Home';
-// import About from './components/About';
+import MovieSearch from './components/MovieSearch';
+import Todo from './components/Todo';
 import './App.css';
 
-const useSearch = (title) => {
-  const [movie, setMovie] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if(title) {
-          setLoading(false);
-          const response = await axios.get(
-            `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=${title}`
-          );
-          const data = await response.data;
-          setLoading(true);
-  
-          setMovie(data);
-        }
-      } catch (error) {
-        console.log("Error", error);
-      }
-    };
-    fetchData();
-  }, [title]);
-
-  return {loading, movie};
-};
-
 function App() {
-  const [title, setTitle] = useState();
-  const {loading, movie} = useSearch(title);
-
-  const inputKeyUp = (e) => {
-    const {
-      target: { value },
-      keyCode,
-    } = e;
-
-    if (keyCode === 13) setTitle(value);
-  };
-
   return (
     <div className="App">
-      <div>
-        Title: <input type="text" onKeyUp={inputKeyUp} />
-      </div>
-      <Home movie={movie} loading={loading} />
-      <Link to="/home">
-        <Button color="primary">Home</Button>
+      <Link to="/MovieSearch">
+        <Button color="primary">MovieSearch</Button>
       </Link>
-      {/* <Link to="/about">
-        <Button>About</Button>
-      </Link> */}
+      <Link to="/todo">
+        <Button>Todo</Button>
+      </Link>
 
       <Switch>
-        <Route path="/home">
-        </Route>
-        {/* <Route path="/about" component={About} /> */}
+        <Route path="/MovieSearch" component={MovieSearch}></Route>
+        <Route path="/todo" component={Todo} />
       </Switch>
     </div>
   );
