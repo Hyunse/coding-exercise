@@ -5,7 +5,6 @@ import Todo from './Todo';
 
 const TodoList = () => {
   const todos = useContext(TodoContext);
-  console.log(todos);
   return (
     <List>
       {todos.map(todo => (
