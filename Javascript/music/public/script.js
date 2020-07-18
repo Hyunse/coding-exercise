@@ -1,7 +1,7 @@
 let audio, ctx, audioSrc, analyser, source, bufferLength, dataArray, drawVisual;
 const WIDTH = 1024;
 const HEIGHT = 350;
-const INTERVAL = 128;
+const BAR_NUM = 64;
 
 function start() {
   if (ctx.state === 'suspended') {
@@ -54,19 +54,25 @@ function draw() {
 
   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
+  // Bar Width, Height, Color
+  let barWidth = 0;
+  let barHeight = 0;
   canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+  
+  for (let i = 0; i < bufferLength; i++) {
+    barHeight = (dataArray[i] - 128) * 2 + 5;
 
-  var x =0;
+    if (barHeight <= 1) barHeight = 2;
 
-  for (var i = 0; i < 32; i++) {
-    var y = (dataArray[i] - 128) * 2 + 5;
-    if (y <= 1) {
-      y = 2;
-    }
+    // Fill
+    canvasCtx.fillRect(
+      barWidth,
+      HEIGHT - barHeight,
+      WIDTH / BAR_NUM - 2,
+      barHeight
+    );
 
-    canvasCtx.fillStyle = 'rgb(0, 0, 0)';
-    canvasCtx.fillRect(x, HEIGHT - y, WIDTH / 32 - 2, y);
-    x = x + (WIDTH / 32);
+    // Set Next Bar X position
+    barWidth += WIDTH / BAR_NUM;
   }
 }
-
