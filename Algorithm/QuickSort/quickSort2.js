@@ -9,14 +9,17 @@ var divide = function (arr, left, right) {
   let temp;
 
   while (left <= right) {
+    // Find value that is bigger than pivot in the left side
     while (arr[left] < pivot) {
       left++;
     }
 
+    // Find value that is smaller than pivot in the right side
     while (arr[right] > pivot) {
       right--;
     }
 
+    // Swap
     if (left <= right) {
       temp = arr[left];
       arr[left] = arr[right];
