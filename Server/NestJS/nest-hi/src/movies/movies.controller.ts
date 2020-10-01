@@ -6,18 +6,18 @@ import {
   Param,
   Patch,
   Post,
-  Query,
 } from '@nestjs/common';
 import { CreateMovieDTO } from './dto/create-movie.dto';
 import { UpdateMovieDTO } from './dto/update-movie.dto';
+import { Movie } from './entity/movie.entity';
 import { MoviesService } from './movies.service';
 
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
-  
+
   @Get()
-  getAll() {
+  getAll(): Movie[] {
     return this.moviesService.getAll();
   }
 
