@@ -42,6 +42,27 @@ var moveZeroes2 = function (nums) {
   return nums
 };
 
+var moveZeroes3 = function (nums) {
+  let j = 0;
+  let temp;
 
-console.log(moveZeroes2([0, 1, 0, 3, 12]));
-console.log(moveZeroes2([0, 0, 1]));
+  for (let i = 0; i < nums.length; i++) {
+    if(nums[j] !== 0) {
+      continue;
+    }
+
+    if(nums[j] === 0 && nums[i] !== 0) {
+      temp = nums[j];
+      nums[j] = nums[i];
+      nums[i] = temp;
+      j++;
+    }
+
+  }
+
+  return nums;
+}
+
+
+console.log(moveZeroes3([0, 1, 0, 3, 12]));
+console.log(moveZeroes3([0, 0, 1]));
