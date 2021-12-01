@@ -1,0 +1,86 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: azure;
+}
+
+.grid-container {
+  display: grid;
+  /* 1) 2 colums width 200 and 100 px */
+  /* grid-template-columns: 200px 100px;  */
+
+  /* 2) Fr */
+  /* grid-template-columns: 2fr 1fr; */
+
+  /* 3) Repeat, Set Rows 150px and First row is 200px*/
+  /* grid-template-columns: repeat(4, 100px);
+  grid-auto-rows: 150px;
+  grid-template-rows: 200px; */
+
+  /* 4) Gap & template-areas */
+  /* grid-template-columns: 200px 250px;
+  grid-auto-rows: minmax(150px, auto);
+  grid-row-gap: 20px;
+  grid-column-gap: 10px;
+  grid-gap: 20px;
+  grid-template-areas: 
+  "header header" 
+  "sidebar content"
+  "sidebar content"; */
+
+  /* 5) Grid start end */
+  grid-template-columns: 200px 250px;
+  grid-auto-rows: minmax(150px, auto);
+  grid-gap: 20px;
+
+  /* Order */
+  justify-content: center;
+  height: 100vh;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 25px;
+  font-weight: 500;
+  border: 2px solid #ffff;
+  background-color: cadetblue;
+}
+
+/* 4) */
+/* .grid-item-1 {
+  grid-area: header;
+}
+.grid-item-2 {
+  grid-area: sidebar;
+}
+.grid-item-3 {
+  grid-area: content;
+}
+.grid-item-4 {
+  grid-area: sidebar;
+}
+.grid-item-5 {
+  grid-area: content;
+} */
+
+/* 5) */
+.grid-item-1 {
+  /* grid-column: 1 / -1; */
+  grid-column: span 2;
+}
+
+.grid-item-2 {
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+.grid-item-3 {
+  grid-row: span 2;
+}
